@@ -12,9 +12,9 @@ export default defineConfig({
 					authors: {
 						maverickd650: {
 							name: 'MaverickD650',
-							title: 'Aspiring Homelabber'
-						}
-					}
+							title: 'Aspiring Homelabber',
+						},
+					},
 				}),
 			title: 'MaverickD650 Lab Docs',
 			social: {
