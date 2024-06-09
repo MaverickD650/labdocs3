@@ -6,7 +6,16 @@ import starlightBlog from 'starlight-blog';
 export default defineConfig({
 	integrations: [
 		starlight({
-			plugins: [starlightBlog()],
+			plugins: 
+				starlightBlog({
+					title: 'Homelab Blog',
+					authors: {
+						maverickd650: {
+							name: 'MaverickD650',
+							title: 'Aspiring Homelabber'
+						}
+					}
+				}),
 			title: 'MaverickD650 Lab Docs',
 			social: {
 				github: 'https://github.com/MaverickD650',
