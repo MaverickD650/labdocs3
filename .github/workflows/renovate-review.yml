@@ -1,0 +1,44 @@
+name: 'Renovate Review'
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    # Required permissions
+    permissions:
+      pull-requests: read
+    # Set job outputs to values from filter step
+    outputs:
+      renovate: ${{ steps.filter.outputs.renovate }}
+    steps:
+      - name: 'Checkout Repository'
+        uses: actions/checkout@v4
+      # For pull requests it's not necessary to checkout the code
+      - name: filter
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            renovate:
+              - 'renovate.json'
+
+  renovate-review:
+    needs: changes
+    if: ${{ needs.changes.outputs.renovate == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: renovate-config-validator
+        uses: rinchsan/renovate-config-validator@v0.2.0
+        with: 
+          pattern: renovate.json
+  
