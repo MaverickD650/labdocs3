@@ -1,0 +1,13 @@
+---
+title: Paperless-ngx notes
+description: Notes on Paperless-ngx
+---
+## Intro
+
+Paperless-ngx is a great app for document management by ingesting, OCR processing and tagging your personal or work documents.
+
+## Requirements
+
+In terms of requiremnts this app needs two directories, your ingest folder where you dump your files to be processed and your data directory which Paperless will manage for your actual data storage. These need to be different locations with the ingest ideally being a network accessible folder for ease of use but you can also use a PVC/Host Path with a file manager to drag and drop.
+
+> ⚠️ **WARNING**: First time installation and subsequent restarts take a considerable period of time with Paperless-ngx so don't jump to troubleshoting straight away.

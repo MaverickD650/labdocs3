@@ -1,25 +1,30 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
+	output: 'server',
+	adapter: cloudflare(),
 	integrations: [
 		starlight({
-			title: 'My Docs',
+			title: 'MaverickD650 Lab Docs',
 			social: {
-				github: 'https://github.com/withastro/starlight',
+				github: 'https://github.com/MaverickD650',
 			},
 			sidebar: [
 				{
-					label: 'Guides',
+					label: 'LLDAP',
 					items: [
 						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', link: '/guides/example/' },
+						{ label: 'LLDAP', link: '/lldap/lldap/' },
+						{ label: 'LLDAP with Authentik', link: '/lldap/authentik/' },
+						{ label: 'LLDAP with Authelia', link: '/lldap/authelia/' },
 					],
 				},
 				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					label: 'Paperless-ngx',
+					autogenerate: { directory: 'paperless-ngx' },
 				},
 			],
 		}),
