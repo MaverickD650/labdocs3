@@ -1,25 +1,39 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightBlog from 'starlight-blog';
 
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'My Docs',
+			plugins: [
+				starlightBlog({
+					title: 'Homelab Blog',
+					authors: {
+						maverickd650: {
+							name: 'MaverickD650',
+							title: 'Aspiring Homelabber',
+						},
+					},
+				}),
+			],
+			title: 'MaverickD650 Lab Docs',
 			social: {
-				github: 'https://github.com/withastro/starlight',
+				github: 'https://github.com/MaverickD650',
 			},
 			sidebar: [
 				{
-					label: 'Guides',
+					label: 'LLDAP',
 					items: [
 						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', link: '/guides/example/' },
+						{ label: 'LLDAP', link: '/lldap/lldap/' },
+						{ label: 'LLDAP with Authentik', link: '/lldap/authentik/' },
+						{ label: 'LLDAP with Authelia', link: '/lldap/authelia/' },
 					],
 				},
 				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+					label: 'Paperless-ngx',
+					autogenerate: { directory: 'paperless-ngx' },
 				},
 			],
 		}),
