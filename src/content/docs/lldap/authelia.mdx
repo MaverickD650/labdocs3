@@ -2,13 +2,18 @@
 title: Authelia LLDAP implementation
 description: A guide to implement LLDAP with Authelia
 ---
+
+import { Aside } from '@astrojs/starlight/components';
+
 ## Authelia Setup
 
 Authelia is a highly available authentication and authorization server for your applications. It is designed to be deployed behind your reverse proxy and acts as a central point of authentication for your apps and services. It can be used to protect your apps and services with two-factor authentication, single sign-on and more. The TrueCharts implementation of Authelia has been built to be more robust with CloudNativePG integration and highly available. Cannot find a guide on the whole setup yet though so this is a work in progress.
 
 Authelia is available in the Enterprise train of TrueCharts to act as the authentication provider for your apps and services either through OAuth or forward authentication. LLDAP can be used to manage your Authelia users and groups. To enable this as an option follow the steps outlined below. References to the specific questions as they appear in the TrueNAS SCALE UI are included in the guide and highlighted along with the answers you should use.
 
->**Disclaimer:** This guide only covers the LDAP setup of Authelia. Refer to other guides for the remaining setup of Authelia.
+<Aside>
+This guide only covers the LDAP setup of Authelia. Refer to other guides for the remaining setup of Authelia.
+</Aside>
 
 This is adapted from a guide I wrote for the TrueCharts project. Not published yet as I haven't been able to test the guide start to finish as I just did a rewrite of the TrueCharts implentation of LLDAP. I will update this guide once I have tested it.
 

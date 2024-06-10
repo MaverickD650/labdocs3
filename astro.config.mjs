@@ -4,6 +4,7 @@ import starlightBlog from 'starlight-blog';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://labdocs.g5yss.uk',
 	integrations: [
 		starlight({
 			plugins: [
@@ -12,6 +13,7 @@ export default defineConfig({
 					authors: {
 						maverickd650: {
 							name: 'MaverickD650',
+							picture: 'https://avatars.githubusercontent.com/u/92877124',
 							title: 'Aspiring Homelabber',
 						},
 					},
