@@ -4,6 +4,7 @@ description: A guide to implement LLDAP with Authelia
 ---
 
 import { Aside } from '@astrojs/starlight/components';
+import { Steps } from '@astrojs/starlight/components';
 
 ## Authelia Setup
 
@@ -18,6 +19,8 @@ This guide only covers the LDAP setup of Authelia. Refer to other guides for the
 This is adapted from a guide I wrote for the TrueCharts project. Not published yet as I haven't been able to test the guide start to finish as I just did a rewrite of the TrueCharts implentation of LLDAP. I will update this guide once I have tested it.
 
 ## Setup instructions
+
+<Steps>
 
 1. Tick the box for `LDAP backend configuration` a further set of questions will then appear.
 2. The dropdown `Implementation` should be set as `custom`
@@ -47,6 +50,8 @@ This will need to be adapted if you have named LLDAP differently or used a diffe
         `uid=admin,ou=people,dc=example,dc=com`
 
 14. Enter the admin user password into the `Password` field. As stated earlier **DO NOT** use the default password.
+
+</Steps>
 
 ## References
 
