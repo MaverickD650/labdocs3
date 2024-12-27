@@ -4,6 +4,6 @@
   "minimumReleaseAge": "3 days",
   "rangeStrategy": "update-lockfile",
   "rebaseWhen": "conflicted",
-  "assignees": ["MaverickD650"]
+  "assignees": ["MaverickD650"],
   "lockFileMaintenance": { "enabled": true }
 }
