@@ -20,9 +20,9 @@ export default defineConfig({
 				}),
 			],
 			title: 'MaverickD650 Lab Docs',
-			social: {
-				github: 'https://github.com/MaverickD650',
-			},
+			social: [
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/MaverickD650' },
+			],
 			sidebar: [
 				{
 					label: 'LLDAP',
