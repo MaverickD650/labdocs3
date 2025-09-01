@@ -1,0 +1,54 @@
+---
+title: Ingress
+description: Ingress documentation
+---
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="danger">
+This is a subject I deviate from with reference to Truecharts and disagree with the implementation of Ingress Nginx due to imminent deprecation. As a result my implementation of ingress will deviate considerably from the Truecharts standard.
+</Aside>
+
+Ingress is provided by Traefik. I primarily use standard ingress rather than the Gateway API and ingress routes. This maximises compatibility with applications and services while still providing a robust solution for ingress. I have also not yet found a good replacement for forward auth and other Traefik middleware features in Gateway API and TLS is more painful to implement. I do want to explore the Gateway API more in the future as it does provide a more robust solution for ingress and I want to be able to use it when needed.
+Ingress still mostly falls in line with the Truecharts standard which reduces the amount of customisation needed. It primarily deviates when it comes to middleware as the new common has a fault with implementing a middleware removed from Common.
+The primary method of implenting some aspects of ingress is via annotations on the ingress resource. This is not ideal but it does work and is a compromise until the Gateway API is more widely supported. The annotations I use are as follows:
+
+```yaml
+  traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  traefik.ingress.kubernetes.io/router.tls: "true"
+  traefik.ingress.kubernetes.io/router.middlewares: traefik-chain-basic@kubernetescrd
+```
+
+The first two are self explanatory and the third implements a middleware chain for common security middlewares in the traefik namespace. Omitting the word traefik at the beginning of the middleware will cause it not to work as it assumes the middleware will be located in the same namespace as the application which is not the case.
+Additionally I use the following annotations for Authelia protected services:
+
+```yaml
+  traefik.ingress.kubernetes.io/router.middlewares: traefik-chain-basic@kubernetescrd,authelia-forward-auth@kubernetescrd
+```
+
+The middlewares can be chained together in this way in a single annotation making it straightforward to implement.
+
+The remaining part of the ingress block aligns with the Truecharts standard and makes use of the common chart components. This can be seen as follows:
+
+```yaml
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-chain-basic@kubernetescrd
+  integrations:
+    traefik:
+      enabled: false
+    certManager:
+      enabled: true
+      certificateIssuer: domain-0-le-prod
+        hosts:
+          - host: example.domain.com
+            paths:
+              - path: /
+                pathType: Prefix
+```
+
+The certManager section implements the TLS certificate for the ingress resource. The certificate issuer is defined in the cert-manager section of the common chart and is used to issue the certificate for the specified host. The paths section defines the paths that will be routed to the service. In this case all paths are routed to the service.
+The integration with Traefik is disabled due to aforementioned Common issues. The ingress class annotation is set to traefik to ensure that Traefik picks up the ingress resource. This is good practice as other ingress controllers may be installed and we may want to define specifically which one to use.

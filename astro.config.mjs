@@ -25,6 +25,10 @@ export default defineConfig({
 			],
 			sidebar: [
 				{
+					label: 'Infrastructure',
+					autogenerate: { directory: 'infrastructure' },
+				},
+				{
 					label: 'LLDAP',
 					items: [
 						// Each item here is one entry in the navigation menu.
