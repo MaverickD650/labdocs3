@@ -22,7 +22,7 @@ jobs:
       renovate: ${{ steps.filter.outputs.renovate }}
     steps:
       - name: 'Checkout Repository'
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       # For pull requests it's not necessary to checkout the code
       - name: filter
         uses: dorny/paths-filter@v3
